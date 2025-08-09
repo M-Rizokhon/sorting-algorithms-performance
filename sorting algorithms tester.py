@@ -5,7 +5,7 @@ Created on Sat Apr 12 15:33:08 2025
 @author: Muhammad Rizohon
 Project info:
 
-A small project to measure the run time of different sorting algorithms
+A mini project to measure the run time of different sorting algorithms
 sorting algorithms incldued :
     Bubble sort
     selection sort
@@ -52,7 +52,7 @@ import time
 
 lengths = [10, 50, 100, 500, 1000, 1500, 1700, 1800, 2000]
 
-# 1, 2 creating unsorted lists, sorted lists, and reversely sorted lists 
+# each algorithm's performance is assessed on 3 different datasets:
 unsorted_lists = []
 sorted_lists = []
 reverse_sorted_lists = []
@@ -69,10 +69,15 @@ for length in lengths:
 
 
 
-# 3 creating a class with different sorting algorithms
+'''
+Creating a class for each sorting algorithm.
+
+Time complexity of each algorithm is provided
+on the definition.
+'''
 class sorting_algorithms:
     
-    def bubble_sort(self, dataset):
+    def bubble_sort(self, dataset):   # O(n^2)
         n = len(dataset)
         for i in range(n):
             swapped = False
@@ -83,7 +88,7 @@ class sorting_algorithms:
             if not swapped: break
         return dataset
     
-    def selection_sort(self, dataset):
+    def selection_sort(self, dataset):  # O(n^2)
         for i in range(0, len(dataset) - 1):
             min_idx = i
             for j in range(i + 1, len(dataset)):
@@ -93,7 +98,7 @@ class sorting_algorithms:
                 dataset[i], dataset[min_idx] = dataset[min_idx], dataset[i]
         return dataset
         
-    def insertion_sort(self, data):
+    def insertion_sort(self, data):    # O(n^2)
         for i in range(1, len(data)):
             key = data[i]
             j = i - 1
@@ -103,7 +108,7 @@ class sorting_algorithms:
             data[j + 1] = key  # insert key at the correct position
         return data
         
-    def merge_sort(self, data):
+    def merge_sort(self, data):     # O(nlogn)
         # a function to merge two sorted arrays in sorted order
         def merge(list1, list2):
             result = []
@@ -135,7 +140,7 @@ class sorting_algorithms:
         return merge(listOne, listTwo)
 
         
-    def tim_sort(self, data):
+    def tim_sort(self, data):            # O(nlogn)
         min_run = 32
         
         def insertion_sort(data, left, right):
@@ -180,7 +185,7 @@ class sorting_algorithms:
             size *= 2
         return data
         
-    def quick_sort(self, data):
+    def quick_sort(self, data):      # O(nlogn)   (NOTE : Worst case -  O(n^2))
         # Helper function to perform the partition
         def partition(arr, low, high):
             pivot = arr[high]
@@ -244,7 +249,7 @@ for name in algorithms:
 
 
 
-# plotting data
+# plot data
 # start and end mean the part of the data, where 0-8 indexes are unsorted data sorting time,
 # 9-17 indexes are sorted data sorting times, and 18-26 are reversely sorted sorting times
 def plot_data(name, start, end):
